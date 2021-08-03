@@ -12,8 +12,8 @@ import java.util.List;
 import br.com.agenda.factory.ConnectionFactory;
 import br.com.agenda.model.Contato;
 
-//aqui você faz com o Java se molde a uma estrutura relacional que é o banco
-//aqui nesta classe irão acontecer todas as regras de negócios
+//aqui vocï¿½ faz com o Java se molde a uma estrutura relacional que ï¿½ o banco
+//aqui nesta classe irï¿½o acontecer todas as regras de negï¿½cios
 public class ContatoDAO {
 	
 	/*
@@ -23,10 +23,10 @@ public class ContatoDAO {
 	 * u: updade
 	 * d: delete
 	 */
-								//instância de contato
+								//instï¿½ncia de contato
 	public void save(Contato contato) {
 		
-		//que  é uma query
+		//que  ï¿½ uma query
 		String sql = "INSERT INTO contatos(nome, idade, datacadastro) VALUES (?,?,?)";
 		
 		//temos agora que conectar
@@ -37,13 +37,13 @@ public class ContatoDAO {
 		
 		//tentando se conectar  ao banco com o try catch
 		try {
-			//criar uma conexão com o banco de dados
+			//criar uma conexï¿½o com o banco de dados
 			conn = ConnectionFactory.createConnectionToMySQL();
 			//criamos uma PreparedStatement, para executar uma query
 			pstm = (PreparedStatement) conn.prepareStatement(sql);
 			pstm.setString(1, contato.getNome());
 			pstm.setInt(2, contato.getIdade());
-			//adicionar os valores que são esperados pela query
+			//adicionar os valores que sï¿½o esperados pela query
 			pstm.setDate(3, new Date(contato.getDataCadastro().getTime()));
 			
 			//executar a query
@@ -52,7 +52,7 @@ public class ContatoDAO {
 		}catch (Exception e ) {
 			e.printStackTrace();
 		}finally {
-			//fechar as conexões
+			//fechar as conexï¿½es
 			try {
 				if(pstm!=null) {
 					pstm.close();
@@ -76,7 +76,7 @@ public class ContatoDAO {
 		PreparedStatement pstm = null;
 		
 		try {
-			//Criar conexão com o banco
+			//Criar conexï¿½o com o banco
 			conn = ConnectionFactory.createConnectionToMySQL();
 			
 			//Criar a classe para executar a query
@@ -84,7 +84,7 @@ public class ContatoDAO {
 			
 			//Adicionar os valores para atualizar
 			pstm.setString(1, contato.getNome());
-			pstm.setInt(2, contato.getId());
+			pstm.setInt(2, contato.getIdade());
 			pstm.setDate(3, new Date(contato.getDataCadastro().getTime()));
 			
 			//Qual o ID do registro que deseja  atualizar?
@@ -159,7 +159,7 @@ public class ContatoDAO {
 				//Recuperar o nome
 				contato.setNome(rset.getString("nome"));
 				//Recuparar a idade
-				contato.setId(rset.getInt("idade"));
+				contato.setIdade(rset.getInt("idade"));
 				//Recuperar a data de cadastrado
 				contato.setDataCadastro(rset.getDate("datacadastro"));
 				
