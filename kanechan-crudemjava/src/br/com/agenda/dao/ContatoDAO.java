@@ -12,8 +12,8 @@ import java.util.List;
 import br.com.agenda.factory.ConnectionFactory;
 import br.com.agenda.model.Contato;
 
-//aqui vocï¿½ faz com o Java se molde a uma estrutura relacional que ï¿½ o banco
-//aqui nesta classe irï¿½o acontecer todas as regras de negï¿½cios
+//aqui você faz com o Java se molde a uma estrutura relacional que é o banco
+//aqui nesta classe irão acontecer todas as regras de negócios
 public class ContatoDAO {
 	
 	/*
@@ -23,10 +23,10 @@ public class ContatoDAO {
 	 * u: updade
 	 * d: delete
 	 */
-								//instï¿½ncia de contato
+								//instância de contato
 	public void save(Contato contato) {
 		
-		//que  ï¿½ uma query
+		//que  é uma query
 		String sql = "INSERT INTO contatos(nome, idade, datacadastro) VALUES (?,?,?)";
 		
 		//temos agora que conectar
@@ -37,13 +37,13 @@ public class ContatoDAO {
 		
 		//tentando se conectar  ao banco com o try catch
 		try {
-			//criar uma conexï¿½o com o banco de dados
+			//criar uma conexão com o banco de dados
 			conn = ConnectionFactory.createConnectionToMySQL();
 			//criamos uma PreparedStatement, para executar uma query
 			pstm = (PreparedStatement) conn.prepareStatement(sql);
 			pstm.setString(1, contato.getNome());
 			pstm.setInt(2, contato.getIdade());
-			//adicionar os valores que sï¿½o esperados pela query
+			//adicionar os valores que são esperados pela query
 			pstm.setDate(3, new Date(contato.getDataCadastro().getTime()));
 			
 			//executar a query
@@ -52,7 +52,7 @@ public class ContatoDAO {
 		}catch (Exception e ) {
 			e.printStackTrace();
 		}finally {
-			//fechar as conexï¿½es
+			//fechar as conexões
 			try {
 				if(pstm!=null) {
 					pstm.close();
@@ -76,7 +76,7 @@ public class ContatoDAO {
 		PreparedStatement pstm = null;
 		
 		try {
-			//Criar conexï¿½o com o banco
+			//Criar conexão com o banco
 			conn = ConnectionFactory.createConnectionToMySQL();
 			
 			//Criar a classe para executar a query
@@ -140,7 +140,7 @@ public class ContatoDAO {
 		Connection conn = null;
 		PreparedStatement pstm =null;
 		
-		//Classeque vai recuperasr os dados do bvancol. ****SDEWLECT****
+		//Classe que vai recuperasr os dados do bancol. ****SDEWLECT****
 		ResultSet rset = null;
 		
 		try {
@@ -162,8 +162,7 @@ public class ContatoDAO {
 				contato.setIdade(rset.getInt("idade"));
 				//Recuperar a data de cadastrado
 				contato.setDataCadastro(rset.getDate("datacadastro"));
-				
-				
+						
 				contatos.add(contato);
 			}
 			}catch (Exception e ) {
@@ -183,7 +182,7 @@ public class ContatoDAO {
 					e.printStackTrace();
 				}
 			}
-		
+			System.out.println("Quantidade dos registros:  " + contatos.size() );
 			return contatos;
 	}
 		
